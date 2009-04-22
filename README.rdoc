@@ -1,0 +1,7 @@
+= sinatra-url-for
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Eric Kidd. See LICENSE for details.
