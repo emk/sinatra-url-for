@@ -1,7 +1,27 @@
 = sinatra-url-for
 
-Description goes here.
+<code>sinatra-url-for</code> can be used by a Sinatra application to
+construct absolute paths and full URLs.  For example:
+
+  gem 'emk-sinatra-url-for'
+  require 'sinatra/url_for'
+
+  # From within a request.
+  url_for "/"            # Returns "/myapp/"
+  url_for "/foo"         # Returns "/myapp/foo"
+  url_for "/foo", :full  # Returns "http://example.com/myapp/foo"
+
+If you're subclassing <code>Sinatra::Base</code>, then you need to call
+<code>helpers</code> manually:
+
+  class MyApp < Sinatra::Base
+    helpers Sinatra::UrlForHelper
+    # ...
+  end
+
+Thanks to "cypher23" on #mephisto and the folks on #rack for pointing me in
+the right direction.
 
 == Copyright
 
-Copyright (c) 2009 Eric Kidd. See LICENSE for details.
+Copyright 2009 Eric Kidd. See LICENSE for details.
