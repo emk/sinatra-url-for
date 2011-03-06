@@ -38,7 +38,7 @@ module Sinatra
       optstring = nil
       
       if options.is_a? Hash
-        optstring = '?' + options.map { |k,v| "#{k}=#{URI.escape(v, /[^#{URI::PATTERN::UNRESERVED}]/)}" }.join('&')
+        optstring = '?' + options.map { |k,v| "#{k}=#{URI.escape(v.to_s, /[^#{URI::PATTERN::UNRESERVED}]/)}" }.join('&')
       end
 
       case mode
