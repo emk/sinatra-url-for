@@ -23,7 +23,8 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.1.1"])
-      s.add_development_dependency(%q<rspec>, [">= 1.1.11"])
+      s.add_development_dependency(%q<rspec>, ["~> 1.1.11"])
+      s.add_development_dependency(%q<jeweler>)
     else
       s.add_dependency(%q<sinatra>, [">= 0.9.1.1"])
       s.add_dependency(%q<rspec>, [">= 1.1.11"])
