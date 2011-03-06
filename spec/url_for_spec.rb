@@ -13,6 +13,11 @@ get "/" do
   url_for params[:url], params[:mode], params[:options]
 end
 
+get "/nomode" do
+  content_type "text/plain"
+  url_for params[:url], params[:options]
+end
+
 describe Sinatra::UrlForHelper do
   include Rack::Test::Methods
   
@@ -67,5 +72,12 @@ describe Sinatra::UrlForHelper do
     
     last_response.should be_ok
     last_response.body.should == "/foo?return_to=http%3A%2F%2Fexample.com%2Fbar%3Fx%3Dy"
+  end
+  
+  it "should handle not being passed a mode" do
+    get "/nomode", :url => "/foo", :options => { :x => "y" }
+    
+    last_response.should be_ok
+    last_response.body.should == "/foo?x=y"
   end
 end

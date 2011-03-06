@@ -25,6 +25,11 @@ module Sinatra
     # See README.rdoc for a list of some of the people who helped me clean
     # up earlier versions of this code.
     def url_for url_fragment, mode=nil, options = nil
+      if mode.is_a? Hash
+        options = mode
+        mode = nil
+      end
+      
       if mode.nil?
         mode = :path_only
       end
