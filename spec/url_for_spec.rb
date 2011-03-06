@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'sinatra'
-require 'sinatra/test'
 require 'sinatra/url_for'
+require 'rack/test'
 
 get "/" do
   content_type "text/plain"
@@ -13,11 +13,16 @@ EOD
 end
 
 describe Sinatra::UrlForHelper do
-  include Sinatra::Test
+  include Rack::Test::Methods
+  
+  def app
+    Sinatra::Application
+  end
+  
   it "should return absolute paths and full URLs" do
     get "/"
-    response.should be_ok
-    response.body.should == <<EOD
+    last_response.should be_ok
+    last_response.body.should == <<EOD
 /
 /foo
 http://example.org/foo
