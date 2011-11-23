@@ -1,4 +1,7 @@
 require 'rubygems'
+
+Bundler.require(:default, :test)
+
 require 'spec'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
