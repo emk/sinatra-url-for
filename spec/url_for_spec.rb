@@ -80,4 +80,18 @@ describe Sinatra::UrlForHelper do
     last_response.should be_ok
     last_response.body.should == "/foo?x=y"
   end
+  
+  it "should handle URLs with placeholders in them" do
+    get "/", :url => "/object/:id/status", :options => { :id => 3, :extra => "test" }
+    
+    last_response.should be_ok
+    last_response.body.should == "/object/3/status?extra=test"
+  end
+  
+  it "should be able to handle multiple occurrences of URL placeholders" do
+    get "/", :url => "/object/:id/status/:id", :options => { :id => "M&Ms", :extra => "test" }
+    
+    last_response.should be_ok
+    last_response.body.should == "/object/M%26Ms/status/M%26Ms?extra=test"
+  end
 end
